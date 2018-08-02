@@ -1,12 +1,14 @@
-package tygelsjo_test
+package smhi_test
 
 import (
-	"net/http"
-	"testing"
+	"fmt"
 
-	"github.com/peterstark72/tygelsjo"
+	"github.com/peterstark72/smhi"
 )
 
-func TestForeCast(T *testing.T) {
-	tygelsjo.GetWeather(new(http.Client))
+func ExampleGetPointForecast() {
+
+	fc := smhi.GetPointForecast(55.5174044, 12.9986549)
+
+	fmt.Println(fc)
 }
