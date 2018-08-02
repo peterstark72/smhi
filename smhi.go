@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-const TimeLayout = "2006-01-02T15:04:05Z"
-
 const GetPointForecastEndPoint = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/%s/lat/%s/data.json"
 
 type Geometry struct {
@@ -49,13 +47,14 @@ type Weather struct {
 	Precipitation         string
 	MinPrecipitation      float64
 	MaxPrecipitation      float64
-	Icon                  string
 	Time                  time.Time
+	TimeSweden            time.Time
 }
 
 func GetPointForecast(lat float64, lon float64) (result []Weather) {
 
 	latstr, lonstr := strconv.FormatFloat(lat, 'f', 5, 64), strconv.FormatFloat(lon, 'f', 5, 64)
+	swetz, _ := time.LoadLocation("Europe/Copenhagen")
 
 	url := fmt.Sprintf(GetPointForecastEndPoint, lonstr, latstr)
 
@@ -69,13 +68,13 @@ func GetPointForecast(lat float64, lon float64) (result []Weather) {
 	for _, ts := range fc.TimeSeries {
 		var w Weather
 		w.Time, _ = time.Parse(time.RFC3339, ts.ValidTime)
+		w.TimeSweden = w.Time.In(swetz)
 		for _, p := range ts.Parameters {
 			switch p.Name {
 			case "Wsymb2":
 				w.Wsymb2 = int(p.Values[0])
 				w.Situation = Wsymb2[w.Wsymb2][0]
 				w.Description = Wsymb2[w.Wsymb2][1]
-				w.Icon = fmt.Sprintf(Wsymb2Icons, w.Wsymb2)
 			case "t":
 				w.Temperature = p.Values[0]
 			case "tcc_mean":

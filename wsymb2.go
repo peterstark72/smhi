@@ -1,7 +1,5 @@
 package smhi
 
-const Wsymb2Icons = "http://iconsandstuff-cb84.kxcdn.com/wsymb2/%v.png"
-
 var Wsymb2 = map[int][2]string{
 	1:  {"Klart", "Det är molnfritt eller bara några obetydliga molntussar. Det innebär soligt väder på dagen och stjärnklart på natten."},
 	2:  {"Lätt molnighet", "En stor del av himlen kan vara täckt av molnslöjor, men de är i så fall så tunna att de inte skymmer solen nämnvärt. På natten kan man se åtminstone de ljusaste stjärnorna genom molnslöjorna. Om det är fråga om tjockare moln så täcker de högst en fjärdedel av himlen."},
