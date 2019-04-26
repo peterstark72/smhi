@@ -1,5 +1,6 @@
 package smhi
 
+//Wsymb2 is SMHI official swedish descriptions
 var Wsymb2 = map[int][2]string{
 	1:  {"Klart", "Det är molnfritt eller bara några obetydliga molntussar. Det innebär soligt väder på dagen och stjärnklart på natten."},
 	2:  {"Lätt molnighet", "En stor del av himlen kan vara täckt av molnslöjor, men de är i så fall så tunna att de inte skymmer solen nämnvärt. På natten kan man se åtminstone de ljusaste stjärnorna genom molnslöjorna. Om det är fråga om tjockare moln så täcker de högst en fjärdedel av himlen."},
@@ -30,6 +31,7 @@ var Wsymb2 = map[int][2]string{
 	27: {"Ymnigt snöfall", "Himlen är helt täckt av moln och det kommer snö. Snöfallet kan vara ihållande eller med avbrott.  Med ymnigt snöfall menas mängder som i smält form motsvarar mer än 4 mm på en timme.  En generell tumregel är att varje mm motsvarar 1 cm snö, men det kan vara mer än så om det är riktigt kallt."},
 }
 
+//Pcat is the swedish def for Pcat level
 var Pcat = map[int]string{
 	0: "Ingen nederbörd", // No precipitation"
 	1: "Snö",             //Snow
